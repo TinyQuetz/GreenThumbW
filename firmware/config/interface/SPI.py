@@ -1,0 +1,26 @@
+from machine import Pin
+config = {
+    "hw_path":"",
+    "hw_version":"",
+    "mhodule":"",
+    "fw_version":"",
+    "date_code":"",
+    "serial_number":"",
+    "data":{
+    },
+    "firmware":{
+        "id":"ic2_1",
+        "fw_requirements":{},
+        "pins":{
+            "digital":{
+                "miso":{"id":27, "mode":Pin.OUT}, 
+                "mosi": {"id":26, "mode": Pin.OUT},
+                "sck": {"id":25, "mode": Pin.OUT}
+            },
+            "analog":{}
+        },
+        "channel": 0,
+        "freq": 500000
+    },
+    "elec":{}
+}

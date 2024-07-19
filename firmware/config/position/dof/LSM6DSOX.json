@@ -1,0 +1,38 @@
+{
+    "id":"",
+    "hw_path":"",
+    "hw_version":"1.0.0",
+    "mhodule":"",
+    "fw_version":"1.0.0",
+    "date_code":"",
+    "serial_number":"",
+    "data":{
+        "x":2,
+        "y":2,
+        "z":2,
+        "theta":2,
+        "pi":2,
+        "ro":2
+    },
+    "firmware":{
+        "fw_requirements":{
+            "property_name":"id of fw requires"
+        },
+        "pins":{
+            "digital":{"pwm":{"id":0, "mode":0}},
+            "analog":{}
+        },
+        "custom_params":""
+    },
+    "elec":{
+        "voltage":"3.3V",
+        "current":"0.1A",
+        "layout":{"x":10, "y":10, "path":""}
+    },
+    "physical":{
+        "radius":1,
+        "lower":30,
+        "upper":160,
+        "max":180
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "hw_path":"",
+    "hw_version":"",
+    "mhodule":"",
+    "fw_version":"",
+    "date_code":"",
+    "serial_number":"",
+    "data":{
+    },
+    "firmware":{
+        "id":"",
+        "fw_requirements":{
+            "property_name":"id of fw requires"
+        },
+        "pins":{
+            "digital":{"pin_name":{"id":0, "mode":0}},
+            "analog":{}
+        },
+        "custom_params":""
+    },
+    "elec":{
+        "voltage":"3.3V",
+        "current":"0.1A",
+        "layout":{"x":10, "y":10, "path":""}
+    }
+}
