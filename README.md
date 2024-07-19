@@ -1,5 +1,5 @@
 # GTW: Green Thumb Wireless (_not a phone company_)
-Collect metrics from plant over MQTT and store for monitoring in 
+Collect metrics from plant over MQTT and store for monitoring in homeassistant
 ## Requirements:
 ### HomeAssistant
 - Docker
