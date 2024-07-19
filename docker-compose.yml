@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./homeassistant:/config
+    environment:
+      - TZ=${TZ}
+    restart: always
+    ports:
+      - ${HA_PORT}:8123
+
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto:latest
+    ports:
+      - ${MQTT_PORT}:1883
+      - ${MQTT_WEBSOCKET_PORT}:9001
+    volumes:
+      - ./mqtt/config:/mosquitto/config
+      - ./mqtt/data:/mosquitto/data
+      - ./mqtt/log:/mosquitto/log
+    restart: always
+
+  victoriametrics:
+    container_name: victoriametrics
+    image: victoriametrics/victoria-metrics:v1.94.0
+    ports:
+      - ${VICTORIAMETRICS_PORT}:8428
+    volumes:
+      - ./victoriametrics:/storage
+    command:
+      - "--storageDataPath=/storage"
+      - "--httpListenAddr=:8428"
+      - "--retentionPeriod=100y"
+      - "--selfScrapeInterval=60s"
+    restart: always
+  
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:9.2.7
+    ports:
+      - ${GRAFANA_PORT}:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+    restart: always
+
+

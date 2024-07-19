@@ -1,0 +1,44 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+
+mqtt:
+  sensor:
+      #sensor1
+      - name: "Temperature"
+        state_topic: "plant1/sensor1/temperature"
+        unit_of_measurement: "°C"
+      - name: "Humidity"
+        state_topic: "plant1/sensor1/humidity"
+        unit_of_measurement: "%"
+      #sensor2
+      - name: "IR Irradianace"
+        state_topic: "plant1/sensor2/ir_irradiance"
+        unit_of_measurement: "W/m2"
+      - name: "UV Index"
+        state_topic: "plant1/sensor2/uv_index"
+        unit_of_measurement: ""
+      - name: "Visible Light"
+        state_topic: "plant1/sensor2/lux"
+        unit_of_measurement: "lx"
+
+
+
+
+influxdb:
+  host: victoriametrics
+  port: 8428
+  database: home_assistant
+  ssl: false
+  verify_ssl: false
+  max_retries: 3
+  default_measurement: state

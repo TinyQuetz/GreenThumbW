@@ -1,0 +1,8 @@
+.DS_Store
+.cloud/
+.storage
+
+secrets.yaml
+secrets.yaml.backup
+*.log*
+*.db*
