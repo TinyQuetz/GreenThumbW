@@ -1,1 +1,50 @@
-[]
+
+# - alias: "Process Temperature Data"
+#   trigger:
+#     platform: mqtt
+#     topic: "plant1/sensor1/temperature"
+#   action:
+#     service: python_script.decode_bytearray
+#     data_template:
+#       payload: "{{ trigger.payload }}"
+#       entity_id: "sensor.temperature"
+
+# - alias: "Process Humidity Data"
+#   trigger:
+#     platform: mqtt
+#     topic: "plant1/sensor1/humidity"
+#   action:
+#     service: python_script.decode_bytearray
+#     data_template:
+#       payload: "{{ trigger.payload }}"
+#       entity_id: "sensor.humidity"
+
+# - alias: "Process IR Irradiance Data"
+#   trigger:
+#     platform: mqtt
+#     topic: "plant1/sensor2/ir_irradiance"
+#   action:
+#     service: python_script.decode_bytearray
+#     data_template:
+#       payload: "{{ trigger.payload }}"
+#       entity_id: "sensor.ir_irradiance"
+
+# - alias: "Process UV Index Data"
+#   trigger:
+#     platform: mqtt
+#     topic: "plant1/sensor2/uv_index"
+#   action:
+#     service: python_script.decode_bytearray
+#     data_template:
+#       payload: "{{ trigger.payload }}"
+#       entity_id: "sensor.uv_index"
+
+# - alias: "Process Visible Light Data"
+#   trigger:
+#     platform: mqtt
+#     topic: "plant1/sensor2/lux"
+#   action:
+#     service: python_script.decode_bytearray
+#     data_template:
+#       payload: "{{ trigger.payload }}"
+#       entity_id: "sensor.visible_light"

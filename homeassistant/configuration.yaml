@@ -15,30 +15,32 @@ mqtt:
   sensor:
       #sensor1
       - name: "Temperature"
-        state_topic: "plant1/sensor1/temperature"
+        state_topic: "plant1/hum_temp_sensor/temperature"
         unit_of_measurement: "°C"
       - name: "Humidity"
-        state_topic: "plant1/sensor1/humidity"
+        state_topic: "plant1/hum_temp_sensor/humidity"
         unit_of_measurement: "%"
+      - name: "Dew Point"
+        state_topic: "plant1/hum_temp_sensor/dewpoint"
+        unit_of_measurement: "°C"
       #sensor2
       - name: "IR Irradianace"
-        state_topic: "plant1/sensor2/ir_irradiance"
+        state_topic: "plant1/light_sensor/ir_irradiance"
         unit_of_measurement: "W/m2"
       - name: "UV Index"
-        state_topic: "plant1/sensor2/uv_index"
+        state_topic: "plant1/light_sensor/uv_index"
         unit_of_measurement: ""
       - name: "Visible Light"
-        state_topic: "plant1/sensor2/lux"
+        state_topic: "plant1/light_sensor/lux"
         unit_of_measurement: "lx"
 
 
 
 
 influxdb:
-  host: victoriametrics
-  port: 8428
-  database: home_assistant
+  host: !env_var VICTORIAMETRICS_HOST
+  port: !env_var VICTORIAMETRICS_PORT
   ssl: false
   verify_ssl: false
   max_retries: 3
-  default_measurement: state
+  default_measurement: sta
