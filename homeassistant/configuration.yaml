@@ -1,8 +1,6 @@
 
-# Loads default set of integrations. Do not remove.
 default_config:
 
-# Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
 
@@ -10,33 +8,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-
-mqtt:
-  sensor:
-      #sensor1
-      - name: "Temperature"
-        state_topic: "plant1/hum_temp_sensor/temperature"
-        unit_of_measurement: "°C"
-      - name: "Humidity"
-        state_topic: "plant1/hum_temp_sensor/humidity"
-        unit_of_measurement: "%"
-      - name: "Dew Point"
-        state_topic: "plant1/hum_temp_sensor/dewpoint"
-        unit_of_measurement: "°C"
-      #sensor2
-      - name: "IR Irradianace"
-        state_topic: "plant1/light_sensor/ir_irradiance"
-        unit_of_measurement: "W/m2"
-      - name: "UV Index"
-        state_topic: "plant1/light_sensor/uv_index"
-        unit_of_measurement: ""
-      - name: "Visible Light"
-        state_topic: "plant1/light_sensor/lux"
-        unit_of_measurement: "lx"
-
-
-
-
+#victoria metrics db
 influxdb:
   host: !env_var VICTORIAMETRICS_HOST
   port: !env_var VICTORIAMETRICS_PORT
@@ -44,3 +16,99 @@ influxdb:
   verify_ssl: false
   max_retries: 3
   default_measurement: sta
+
+#mqtt ingestion
+mqtt:
+  sensor:
+    # Fittonia Sensors
+    - name: "Fittonia Temperature"
+      state_topic: "fittonia/hum_temp_sensor/temperature"
+      unit_of_measurement: "°C"
+    - name: "Fittonia Humidity"
+      state_topic: "fittonia/hum_temp_sensor/humidity"
+      unit_of_measurement: "%"
+    - name: "Fittonia Dew Point"
+      state_topic: "fittonia/hum_temp_sensor/dewpoint"
+      unit_of_measurement: "°C"
+    - name: "Fittonia IR Irradiance"
+      state_topic: "fittonia/light_sensor/ir_irradiance"
+      unit_of_measurement: "W/m2"
+    - name: "Fittonia UV Index"
+      state_topic: "fittonia/light_sensor/uv_index"
+      unit_of_measurement: ""
+    - name: "Fittonia Visible Light"
+      state_topic: "fittonia/light_sensor/lux"
+      unit_of_measurement: "lx"
+    - name: "Fittonia Water Top Value"
+      state_topic: "fittonia/moisture_sensor/top_value"
+      unit_of_measurement: "waters"
+    - name: "Fittonia Water Base Value"
+      state_topic: "fittonia/moisture_sensor/base_value"
+      unit_of_measurement: "waters"
+
+    # Ficus Sensors
+    - name: "Ficus Water Top Value"
+      state_topic: "ficus/moisture_sensor/top_value"
+      unit_of_measurement: "waters"
+    - name: "Ficus Water Base Value"
+      state_topic: "ficus/moisture_sensor/base_value"
+      unit_of_measurement: "waters"
+
+  binary_sensor:
+    # Fittonia Water State
+    - name: "Fittonia Water Top State"
+      state_topic: "fittonia/moisture_sensor/top_state"
+      payload_on: "True"
+      payload_off: "False"
+    - name: "Fittonia Water Base State"
+      state_topic: "fittonia/moisture_sensor/base_state"
+      payload_on: "True"
+      payload_off: "False"
+
+    # Ficus Water State
+    - name: "Ficus Water Top State"
+      state_topic: "ficus/moisture_sensor/top_state"
+      payload_on: "True"
+      payload_off: "False"
+    - name: "Ficus Water Base State"
+      state_topic: "ficus/moisture_sensor/base_state"
+      payload_on: "True"
+      payload_off: "False"
+
+#sensor groupings
+sensor:
+  - platform: group
+    name: "Fittonia Sensor Group"
+    type: last
+    entities:
+      - sensor.fittonia_temperature
+      - sensor.fittonia_humidity
+      - sensor.fittonia_dew_point
+      - sensor.fittonia_ir_irradiance
+      - sensor.fittonia_uv_index
+      - sensor.fittonia_visible_light
+      - sensor.fittonia_water_top_value
+      - sensor.fittonia_water_base_value
+
+  - platform: group
+    name: "Ficus Sensor Group"
+    type: last
+    entities:
+      - sensor.ficus_water_top_value
+      - sensor.ficus_water_base_value
+
+#binary sensor groupings
+binary_sensor:
+  - platform: group
+    name: "Fittonia Water State Group"
+    device_class: moisture
+    entities:
+      - binary_sensor.fittonia_water_top_state
+      - binary_sensor.fittonia_water_base_state
+
+  - platform: group
+    name: "Ficus Water State Group"
+    device_class: moisture
+    entities:
+      - binary_sensor.ficus_water_top_state
+      - binary_sensor.ficus_water_base_state

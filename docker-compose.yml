@@ -14,7 +14,6 @@ services:
       - MQTT_HOST=${MQTT_HOST}
       - VICTORIAMETRICS_PORT=${VICTORIAMETRICS_PORT}
       - VICTORIAMETRICS_HOST=${VICTORIAMETRICS_HOST}
-      - VICTORIAMETRICS_DB=${VICTORIAMETRICS_DB}
   mqtt:
     container_name: mqtt
     image: eclipse-mosquitto:latest
